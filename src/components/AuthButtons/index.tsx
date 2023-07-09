@@ -6,11 +6,11 @@ import { AuthButtonsProps } from './types'
 
 export default function AuthButtons({
   canGuest,
-  callBackUrl,
+  callBackUrl = '/',
 }: AuthButtonsProps) {
   const router = useRouter()
 
-  const handleLogin = (provider?: string) => {
+  const handleSignIn = (provider?: string) => {
     if (!provider) {
       router.push('/')
     }
@@ -21,7 +21,7 @@ export default function AuthButtons({
   }
   return (
     <Container>
-      <Button onClick={() => handleLogin('google')}>
+      <Button onClick={() => handleSignIn('google')}>
         <Image
           src="/images/icons/google.svg"
           alt="Google Logo"
@@ -31,7 +31,7 @@ export default function AuthButtons({
         Entrar com Google
       </Button>
 
-      <Button onClick={() => handleLogin('github')}>
+      <Button onClick={() => handleSignIn('github')}>
         <Image
           src="/images/icons/github.svg"
           alt="Github Logo"
@@ -42,7 +42,7 @@ export default function AuthButtons({
       </Button>
 
       {canGuest && (
-        <Button onClick={() => handleLogin()}>
+        <Button onClick={() => handleSignIn()}>
           <Image
             src="/images/icons/rocket-launch.svg"
             alt="Rocket Icon"
